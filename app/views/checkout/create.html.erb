@@ -1,0 +1,13 @@
+<script type="text/javascript">
+  const paymentSessionId = "<%= @secret%>";
+  // alert('<%= @secret %>');
+  // const cf = new Cashfree(paymentSessionId);
+  // alert(cf);
+  // cf.redirect();
+
+  // let paymentSessionId = <%= @secret %>.value;
+  
+  const cf = new Cashfree(paymentSessionId);
+  alert("<%= @secret %>initiated");
+  cf.redirect();
+</script>
