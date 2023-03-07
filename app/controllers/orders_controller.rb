@@ -31,7 +31,8 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        ChargeOrderJob.perform_now(@order,pay_type_params.to_h)
+        # ChargeOrderJob.perform_now(@order,pay_type_params.to_h)
+        OrderMailer.received(@order).deliver_now
         format.html { redirect_to checkout_create_url, notice: "order is completed" }
         # format.html { redirect_to 'https://payments-test.cashfree.com/forms/bookpayment', allow_other_host: true, notice: I18n.t('.thanks') }
         format.json { render :show, status: :created, location: @order }
